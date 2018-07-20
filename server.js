@@ -20,10 +20,10 @@ app.use((req, res, next) => {
   });
   next();
 });
-// maintenance noftification
-app.use((req, res, next)=>{
-  res.render('maintenance.hbs');
-});
+// // maintenance noftification
+// app.use((req, res, next)=>{
+//   res.render('maintenance.hbs');
+// });
 
 app.use(express.static(__dirname + '/public'));
 
@@ -48,6 +48,20 @@ app.get('/about', (req, res)=>{
     pageTitle: 'About Page'
   });
 });
+
+app.get('/projects', (req,res)=>{
+  res.render('projects.hbs', {
+    pageTitle: 'Projects'
+  })
+});
+
+// bad - send back json with errorMessage
+app.get('/bad', (req, res)=>{
+  res.send({
+    errorMessage: 'Unable to handle request'
+  });
+});
+
 app.listen(port, () =>{
   console.log(`Server is up on port ${port}`);
 });
